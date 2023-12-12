@@ -1,10 +1,13 @@
 const output = document.getElementById("output-cards");
 
+//Async function for fetching the url and getting the users
 const userData = async () => {
+  //using try and catch for the possibility of  encountering an error while fetching the url
   try {
     const response = await fetch("https://jsonplaceholder.typicode.com/users");
     const data = await response.json();
 
+    //Printing out all of the user info in the data that we send request earlier.
     for (user of data) {
       output.innerHTML += `<div
         class="col-12 col-md-6 col-lg-4 mt-5 d-flex justify-content-center align-items-center"
@@ -32,6 +35,10 @@ const userData = async () => {
             phone:&nbsp;${user.phone}</br>
             website:&nbsp;${user.website}
             </p>
+            <div class="text-center ">
+            <a href="posts.html?userId=${user.id}">
+            <button class="btn pink-button ">See the Posts</button>
+            </a></div>
           </div>
         </div>
       </div>`;
@@ -41,4 +48,5 @@ const userData = async () => {
   }
 };
 
+///Calling the function
 userData();
